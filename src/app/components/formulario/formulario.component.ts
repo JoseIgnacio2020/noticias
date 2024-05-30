@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -11,8 +11,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class FormularioComponent {
 
-  categoriaSeleccionada = 'entertaiment';
-  paisSeleccionado = 'cl';
+  @Output() parametrosSeleccionados = new EventEmitter<any>();
+  categoriaSeleccionada = 'general';
+  paisSeleccionado = 'us';
 
   categorias: any[] = [
     {value: 'general', nombre: 'General'},
@@ -25,18 +26,21 @@ export class FormularioComponent {
   ]
 
   paises: any[] = [
-    {value: 'ar', nombre: 'Argentina'},
-    {value: 'br', nombre: 'Brasil'},
-    {value: 'cl', nombre: 'Chile'},
-    {value: 'fr', nombre: 'Francia'},
-    {value: 'hu', nombre: 'Hungria'},
-    {value: 'mx', nombre: 'Mexico'},
-    {value: 'gb', nombre: 'Reino Unido'}
+    {value: 'us', nombre: 'Estados Unidos'},
+    {value: 'in', nombre: 'India'},
+    {value: 'jp', nombre: 'Japón'},
+    {value: 'kr', nombre: 'Korea'},
+    {value: 'nl', nombre: 'Países Bajos'},
+    {value: 'ua', nombre: 'Ucrania'},
   ]
 
   buscarNoticia() {
-    console.log(this.categoriaSeleccionada);
-    console.log(this.paisSeleccionado);
+    const PARAMETROS = {
+      categoria: this.categoriaSeleccionada,
+      pais: this.paisSeleccionado
+    }
+
+    this.parametrosSeleccionados.emit(PARAMETROS);
   }
 
 }

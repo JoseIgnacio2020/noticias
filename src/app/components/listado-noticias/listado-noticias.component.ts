@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listado-noticias',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './listado-noticias.component.html',
   styleUrl: './listado-noticias.component.css'
 })
 export class ListadoNoticiasComponent {
+
+  @Input() listaNoticias: any;
 
 }
